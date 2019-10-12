@@ -16,6 +16,8 @@ struct node * beg_deletion(struct node*);
 struct node * last_deletion(struct node*);
 struct node * random_deletion(struct node*,int);
 struct node *no_of_times_data_occurs(struct node *start,int x);
+struct node *middle(struct node*);
+
 int main()
 {
 	int ch,length=0,x=0,pos=0;
@@ -30,7 +32,8 @@ int main()
 	printf("Press 8 to delete node from the last\n");
 	printf("Press 9 to delete random node from the List\n");
 	printf("Press 10 to check no. of times a data occur..\n");
-	printf("Press 11 to exit \n\n");
+	printf("Press 11 to find the middle value of the list..\n");
+	printf("Press 12 to exit \n\n");
 	do{
 	printf("Enter your choice\n");
 	scanf("%d",&ch);
@@ -72,8 +75,10 @@ int main()
 		case 10:   printf("Enter the number that you want to check..\n");
 		            scanf("%d",&x);
 					start=no_of_times_data_occurs(start, x) ;
-					break; 											  		  			 	   	     
-		case 11:   exit(0);
+					break; 
+		case 11:   start=middle(start);
+		             break;														  		  			 	   	     
+		case 12:   exit(0);
 		            break;
 		default:    printf("Wrong choice....\n");
 		            break;	
@@ -233,4 +238,25 @@ int main()
 				}
 				  printf("%d is occurs %d times\n",x,count);
 				  return start;
+			}
+			
+			struct node *middle(struct node *start)
+			{
+				int length=0,middle=0,x=0;
+				struct node *current=start,*current2=start;
+				while(current !=NULL)
+				{
+					current=current->next;
+					length++;
+				}
+				middle=length/2;
+				printf("middle of the node is %d\n",middle);
+			     
+			     while(current2 !=NULL  && x!=middle)
+			     {
+			     	current2=current2->next;
+			     	x++;
+				 }
+				 printf("middle data is %d\n",current2->data);
+				 return start;
 			}
